@@ -36,22 +36,18 @@ const login = async (userData) => {
     let response = [];
     let comparePwd;
 
-    console.log('first test');
 
     const { error } = loginValidation(userData);
     if (error) {
-        console.log('my error test');
         throw new Error(error.details[0].message);
     }
     const validUser = await User.findOne({ email: userData.email });
     if (validUser) {
-        console.log('my token test');
         comparePwd = await bcrypt.compare(userData.password, validUser.password);
     }
     if (validUser == null || !userData.email == validUser.email || !validUser.password == comparePwd) {
         throw new Error('username or password wrong');
     }
-    console.log('my end test');
     token = jwt.sign({ id: validUser.id }, process.env.TOKEN_SECRET);
     header = 'auth-token';
     response.push(header);
