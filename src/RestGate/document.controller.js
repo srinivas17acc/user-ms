@@ -1,5 +1,5 @@
 const client = require('../grpc');
-const {Document} = require('../grpc/documents_pb');
+const {Document, FolderAddReq} = require('../grpc/documents_pb');
 const { errorResponse, successResponse } = require('../utils/response.utils');
 const httpStatus = require('http-status');
 
@@ -18,7 +18,7 @@ const createDocument = async (req, res) => {
             return res.status(httpStatus.BAD_REQUEST).send(errorResponse(err));
            }
            console.log(`created succussfully `, grpcResponse);
-           return res.status(httpStatus.OK).send(successResponse( [], message = 'User created successfully'));
+           return res.status(httpStatus.OK).send(successResponse( [], message = 'Document created successfully'));
        });
         
     } catch (err) {
@@ -27,4 +27,25 @@ const createDocument = async (req, res) => {
 
 };
 
-module.exports = {createDocument};
+
+const createFolder = async (req, res) => {
+    try {
+        const userId = res.locals.userId;
+        const folderReq = new FolderAddReq();
+        folderReq.setName(req.body.name);
+        folderReq.setUserid(userId);
+   
+        client.addFolder(folderReq, (err, grpcResponse) => {
+            if (err) {
+                return res.status(httpStatus.BAD_REQUEST).send(errorResponse(err));
+            }
+            console.log(`created succussfully `, grpcResponse);
+            return res.status(httpStatus.OK).send(successResponse( [], message = 'Folder created successfully'));        });
+        
+    } catch (err) {
+        res.status(httpStatus.BAD_REQUEST).send(errorResponse(err.message));
+    }
+
+};
+
+module.exports = {createDocument, createFolder};

@@ -8,7 +8,6 @@ router.post('/register', authController.register);
 router.post('/login', authController.login);
 router.get('/profile', verify, authController.profile);
 router.post('/document', verify, documentController.createDocument);
-
-
+router.post('/folder', verify, documentController.createFolder);
 
 module.exports = router;
