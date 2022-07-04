@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "pb:gen": "./src/scripts/gen.sh ./src/grpc"
-
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
