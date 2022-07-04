@@ -1,5 +1,5 @@
 const client = require('../grpc');
-const {Document, FolderAddReq, FoldersReadReq, MoveFolderReq} = require('../grpc/documents_pb');
+const {Document, FolderAddReq, FoldersReadReq, MoveFolderReq} = require('../grpc/proto/documents_pb');
 const { errorResponse, successResponse } = require('../utils/response.utils');
 const httpStatus = require('http-status');
 

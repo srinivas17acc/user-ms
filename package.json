@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "pb:gen": "./src/scripts/gen.sh ./src/grpc"
+
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,8 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "grpc-tools": "^1.11.2"
+
   }
 }
