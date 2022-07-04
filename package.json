@@ -17,16 +17,18 @@
   },
   "homepage": "https://github.com/srinivas17acc/user-ms#readme",
   "dependencies": {
+    "@grpc/grpc-js": "^1.6.7",
     "@hapi/joi": "^17.1.1",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-mongo-sanitize": "^2.2.0",
+    "google-protobuf": "^3.20.1",
     "helmet": "^5.1.0",
     "http-status": "^1.5.2",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
-    "mongoose": "^6.4.0",
+    "mongoose": "^6.4.2",
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
