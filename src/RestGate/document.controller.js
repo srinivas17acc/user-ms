@@ -1,5 +1,5 @@
 const client = require('../grpc');
-const {Document, FolderAddReq, FoldersReadReq} = require('../grpc/documents_pb');
+const {Document, FolderAddReq, FoldersReadReq, MoveFolderReq} = require('../grpc/documents_pb');
 const { errorResponse, successResponse } = require('../utils/response.utils');
 const httpStatus = require('http-status');
 
@@ -72,4 +72,31 @@ const readFolder = async (req, res) => {
 };
 
 
-module.exports = {createDocument, createFolder, readFolder};
+const moveFolder = async (req, res) => {
+    try {
+        const userId = res.locals.userId;
+        const folderReq = new MoveFolderReq();
+
+        folderReq.setId(req.body.id);
+        folderReq.setFolderid(req.body.folderId);
+        folderReq.setUserid(userId);
+
+   
+        client.moveFolder(folderReq, (err, grpcResponse) => {
+            if (err) {
+                return res.status(httpStatus.BAD_REQUEST).send(errorResponse(err));
+            }
+            console.log(`Moved succussfully `, grpcResponse);
+            return res.status(httpStatus.OK).send(successResponse( [], message = 'Folder Moved successfully'));       
+        
+        });
+        
+    } catch (err) {
+        res.status(httpStatus.BAD_REQUEST).send(errorResponse(err.message));
+    }
+
+};
+
+
+
+module.exports = {createDocument, createFolder, readFolder, moveFolder};    

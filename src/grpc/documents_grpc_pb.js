@@ -92,6 +92,28 @@ function deserialize_documents_FoldersReadResp(buffer_arg) {
   return documents_pb.FoldersReadResp.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_documents_MoveFolderReq(arg) {
+  if (!(arg instanceof documents_pb.MoveFolderReq)) {
+    throw new Error('Expected argument of type documents.MoveFolderReq');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_documents_MoveFolderReq(buffer_arg) {
+  return documents_pb.MoveFolderReq.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_documents_MoveFolderResp(arg) {
+  if (!(arg instanceof documents_pb.MoveFolderResp)) {
+    throw new Error('Expected argument of type documents.MoveFolderResp');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_documents_MoveFolderResp(buffer_arg) {
+  return documents_pb.MoveFolderResp.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 var DocumentsServiceService = exports.DocumentsServiceService = {
   getDocuments: {
@@ -116,6 +138,17 @@ var DocumentsServiceService = exports.DocumentsServiceService = {
     responseSerialize: serialize_documents_DocumentResult,
     responseDeserialize: deserialize_documents_DocumentResult,
   },
+  readDocument: {
+    path: '/documents.DocumentsService/ReadDocument',
+    requestStream: false,
+    responseStream: false,
+    requestType: documents_pb.DocumentsGetByUserReq,
+    responseType: documents_pb.Document,
+    requestSerialize: serialize_documents_DocumentsGetByUserReq,
+    requestDeserialize: deserialize_documents_DocumentsGetByUserReq,
+    responseSerialize: serialize_documents_Document,
+    responseDeserialize: deserialize_documents_Document,
+  },
   readFolders: {
     path: '/documents.DocumentsService/ReadFolders',
     requestStream: false,
@@ -137,6 +170,17 @@ var DocumentsServiceService = exports.DocumentsServiceService = {
     requestDeserialize: deserialize_documents_FolderAddReq,
     responseSerialize: serialize_documents_FolderAddResp,
     responseDeserialize: deserialize_documents_FolderAddResp,
+  },
+  moveFolder: {
+    path: '/documents.DocumentsService/MoveFolder',
+    requestStream: false,
+    responseStream: false,
+    requestType: documents_pb.MoveFolderReq,
+    responseType: documents_pb.MoveFolderResp,
+    requestSerialize: serialize_documents_MoveFolderReq,
+    requestDeserialize: deserialize_documents_MoveFolderReq,
+    responseSerialize: serialize_documents_MoveFolderResp,
+    responseDeserialize: deserialize_documents_MoveFolderResp,
   },
 };
 

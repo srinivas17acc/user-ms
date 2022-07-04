@@ -10,5 +10,6 @@ router.get('/profile', verify, authController.profile);
 router.post('/document', verify, documentController.createDocument);
 router.post('/folder', verify, documentController.createFolder);
 router.get('/folderread', verify, documentController.readFolder);
+router.post('/movefolder', verify, documentController.moveFolder);
 
 module.exports = router;
